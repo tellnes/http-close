@@ -1,6 +1,6 @@
 {
   "name": "http-close",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "gracefully close open sockets in a http server",
   "main": "index.js",
   "dependencies": {
