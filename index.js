@@ -20,7 +20,14 @@ module.exports = function httpClose(options, server) {
   var close = server.close
   server.close = function () {
     debug('server close')
-    close.apply(this, arguments)
+
+    try {
+      close.apply(this, arguments)
+    } catch (err) {
+      if (err.message !== 'Not running') {
+        throw err
+      }
+    }
 
     sockets.forEach(function (socket) {
       var res = socket._httpMessage
@@ -40,6 +47,8 @@ module.exports = function httpClose(options, server) {
         socket.setTimeout(timeout)
       }
     })
+
+    sockets.length = 0
 
     if (timeout) {
       server.on('timeout', function (socket) {
