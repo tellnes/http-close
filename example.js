@@ -14,16 +14,12 @@ httpClose({ timeout: 10 }, server)
 
 
 server.listen(function () {
-  var listen = server.address()
-    , reqOpts = { host: listen.address
-                , port: listen.port
-                }
-
-  var req = http.get(reqOpts, function (res) {
+  var port = server.address().port
+  var req = http.get({port: port}, function (res) {
     assert.equal(res.statusCode, 500)
   })
 
   setTimeout(function () {
     server.close()
-  }, 10)
+  }, 100)
 })

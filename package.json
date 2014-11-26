@@ -6,8 +6,12 @@
   "dependencies": {
     "debug": "~0.7.2"
   },
-  "devDependencies": {},
-  "scripts": {},
+  "devDependencies": {
+    "tape": "^3.0.3"
+  },
+  "scripts": {
+    "test": "tape test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/tellnes/http-close.git"
