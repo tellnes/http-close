@@ -1,5 +1,5 @@
 
-var debug = require('debug')('http-close')
+const debug = require('debug')('http-close')
 
 module.exports = function httpClose(options, server) {
   if (!server) {
@@ -7,8 +7,8 @@ module.exports = function httpClose(options, server) {
     options = {}
   }
 
-  var sockets = []
-    , timeout = options.timeout || 5000
+  const sockets = []
+  const timeout = options.timeout || 5000
 
   server.on('connection', function (socket) {
     sockets.push(socket)
@@ -17,7 +17,7 @@ module.exports = function httpClose(options, server) {
     })
   })
 
-  var close = server.close
+  const close = server.close
   server.close = function () {
     debug('server close')
 
@@ -30,7 +30,7 @@ module.exports = function httpClose(options, server) {
     }
 
     sockets.forEach(function (socket) {
-      var res = socket._httpMessage
+      const res = socket._httpMessage
 
       // Close all keep-alive sockets
       if (!res) {
@@ -54,7 +54,7 @@ module.exports = function httpClose(options, server) {
       server.on('timeout', function (socket) {
         debug('socket timeout')
 
-        var res = socket._httpMessage
+        const res = socket._httpMessage
 
         if (!res) {
           debug('no ServerResponse')
