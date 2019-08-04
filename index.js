@@ -7,14 +7,16 @@ module.exports = function httpClose(options, server) {
     options = {}
   }
 
-  const sockets = []
+  const sockets = new Set()
   const timeout = options.timeout || 5000
 
+  function onSocketClose() {
+    sockets.delete(this)
+  }
+
   server.on('connection', function (socket) {
-    sockets.push(socket)
-    socket.on('close', function () {
-      sockets.splice(sockets.indexOf(socket), 1)
-    })
+    sockets.add(socket)
+    socket.on('close', onSocketClose)
   })
 
   const close = server.close
@@ -48,7 +50,7 @@ module.exports = function httpClose(options, server) {
       }
     })
 
-    sockets.length = 0
+    sockets.clear()
 
     if (timeout) {
       server.on('timeout', function (socket) {
