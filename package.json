@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "gracefully close open sockets in a http server",
   "main": "index.js",
+  "types": "index.d.ts",
   "dependencies": {
     "debug": "^4.1.1"
   },
