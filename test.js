@@ -17,7 +17,13 @@ test('close persistent connection', function(t){
 
   server.listen(function () {
     var port = server.address().port
-    var req = http.get({port: port}, function (res) {
+    var params =
+      { port
+      , headers:
+        { Connection: 'keep-alive'
+        }
+      }
+    var req = http.get(params, function (res) {
       t.equal(res.headers.connection, 'keep-alive', 'server keep-alive')
     })
 
