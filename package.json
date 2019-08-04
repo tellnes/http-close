@@ -1,6 +1,6 @@
 {
   "name": "http-close",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "gracefully close open sockets in a http server",
   "main": "index.js",
   "types": "index.d.ts",
@@ -23,5 +23,8 @@
   "readmeFilename": "Readme.md",
   "bugs": {
     "url": "https://github.com/tellnes/http-close/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
