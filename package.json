@@ -4,10 +4,10 @@
   "description": "gracefully close open sockets in a http server",
   "main": "index.js",
   "dependencies": {
-    "debug": "~0.7.2"
+    "debug": "^4.1.1"
   },
   "devDependencies": {
-    "tape": "^3.0.3"
+    "tape": "^4.11.0"
   },
   "scripts": {
     "test": "tape test.js"
